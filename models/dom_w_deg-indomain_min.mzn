@@ -5,29 +5,29 @@ array[1..4,1..2] of int: requirements; %
 %int: budget; % 
 
 % Variables:
-array[1..n] of var 0..: grocerylist; % grocerylist[i] Representa el número de unidades que se van a sugerir del producto i.
-var 0..: acumprice; %
-var 0..: totalItems; %
+array[1..n] of var 0..100000: grocerylist; % grocerylist[i] Representa el número de unidades que se van a sugerir del producto i.
+var 0..100000: acumprice; %
+var 0..100000: totalItems; %
 
-%var 0..: calories; %
-var 0..: protein; %
-var 0..: carbo; %
-var 0..: fat; %
+%var 0..100000: calories; %
+var 0..100000: protein; %
+var 0..100000: carbo; %
+var 0..100000: fat; %
 
-%var 0..: minCal;
-var 0..: minPro;
-var 0..: minCar;
-var 0..: minFat;
-%var 0..: maxCal;
-var 0..: maxPro;
-var 0..: maxCar;
-var 0..: maxFat;
-var 0..: mnt;
+%var 0..100000: minCal;
+var 0..100000: minPro;
+var 0..100000: minCar;
+var 0..100000: minFat;
+%var 0..100000: maxCal;
+var 0..100000: maxPro;
+var 0..100000: maxCar;
+var 0..100000: maxFat;
+var 0..100000: mnt;
 
 % Constraints:
 
 %Variety. (Review: See if its better if we reward variety.
-%constraint forall(i in 1..n)
+constraint forall(i in 1..n)
             (grocerylist[i] <= 3);
 
 % Total.
