@@ -6,7 +6,7 @@ array[1..4,1..2] of int: requirements; %
 
 % Variables:
 array[1..n] of var 0..100000: grocerylist; % grocerylist[i] Representa el número de unidades que se van a sugerir del producto i.
-var 0..: acumprice; %
+var 0..100000: acumprice; %
 var 0..100000: totalItems; %
 
 %var 0..100000: calories; %
@@ -72,7 +72,7 @@ constraint acumprice = sum(i in 1..n)(grocerylist[i] * groceries[i,6]);
 constraint mnt = minPro + minCar + minFat + maxPro + maxCar + maxFat;
 
 % Objective Function:
-solve :: int_search([minPro,minCar,minFat,maxPro,maxCar,maxFat], first_fail, indomain_split)
+solve :: int_search([minPro,minCar,minFat,maxPro,maxCar,maxFat], anti_first_fail,indomain_max)
 minimize mnt;
 
 % PRUEBAS:
