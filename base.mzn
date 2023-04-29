@@ -60,7 +60,7 @@ constraint forall(i in 1..n)(grocerylist[i] <= groceries[i,4]);
 constraint acumprice = sum(i in 1..n)(grocerylist[i] * groceries[i,5]);
 
 % New
-constraint mnt = ((lackPro+excessPro)*100 div totalItems*requirements[1,3] + (lackCar+excessCar)*100 div totalItems*requirements[2,3] + (lackFat+excessFat)*100 div totalItems*requirements[3,3] )*1 + 9*(acumprice*100 div budget);
+constraint mnt = (((lackPro+excessPro)*100 div (totalItems*requirements[1,3]) + (lackCar+excessCar)*100 div (totalItems*requirements[2,3]) + (lackFat+excessFat)*100 div (totalItems*requirements[3,3])) div 3)*9 + 1*(acumprice*100 div budget);
 % Old
 %constraint mnt = (lackPro*100 div maxTotal + lackCar*100 div maxTotal + lackFat*100 div maxTotal + excessPro*100 div maxTotal + excessCar*100 div maxTotal + excessFat*100 div maxTotal)*82 + 18*(3*acumprice*100 div budget);
 
