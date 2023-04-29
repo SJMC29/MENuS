@@ -2,7 +2,7 @@
 int : n;
 int : maxTotal = 5000;
 array[1..n,1..5] of int: groceries; % Asumimos que el arreglo viene ordenado, conocemos cada producto
-array[1..3,1..2] of int: requirements; % 
+array[1..3,1..3] of int: requirements; % 
 int: budget; % 
 int: variety; %
 
@@ -28,7 +28,7 @@ var 0..: mnt;
 constraint forall(i in 1..n)
             (grocerylist[i] <= variety);
 
-% Total.
+% Total (Display).
 constraint totalItems = sum(i in 1..n)
             (grocerylist[i]);
 
@@ -59,7 +59,10 @@ constraint forall(i in 1..n)(grocerylist[i] <= groceries[i,4]);
 % Prices and budget.
 constraint acumprice = sum(i in 1..n)(grocerylist[i] * groceries[i,5]);
 
-constraint mnt = (lackPro*100 div maxTotal + lackCar*100 div maxTotal + lackFat*100 div maxTotal + excessPro*100 div maxTotal + excessCar*100 div maxTotal + excessFat*100 div maxTotal)*90 + 10*(6*acumprice*100 div budget);
+% New
+constraint mnt = ((lackPro+excessPro)*100 div totalItems*requirements[1,3] + (lackCar+excessCar)*100 div totalItems*requirements[2,3] + (lackFat+excessFat)*100 div totalItems*requirements[3,3] )*1 + 9*(acumprice*100 div budget);
+% Old
+%constraint mnt = (lackPro*100 div maxTotal + lackCar*100 div maxTotal + lackFat*100 div maxTotal + excessPro*100 div maxTotal + excessCar*100 div maxTotal + excessFat*100 div maxTotal)*82 + 18*(3*acumprice*100 div budget);
 
 % Objective Function:
 solve :: int_search([lackPro,lackCar,lackFat], first_fail, indomain_split)

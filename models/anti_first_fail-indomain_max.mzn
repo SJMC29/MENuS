@@ -59,7 +59,7 @@ constraint forall(i in 1..n)(grocerylist[i] <= groceries[i,4]);
 % Prices and budget.
 constraint acumprice = sum(i in 1..n)(grocerylist[i] * groceries[i,5]);
 
-constraint mnt = (lackPro*100 div maxTotal + lackCar*100 div maxTotal + lackFat*100 div maxTotal + excessPro*100 div maxTotal + excessCar*100 div maxTotal + excessFat*100 div maxTotal)*90 + 10*(6*acumprice*100 div budget);
+constraint mnt = (lackPro*100 div maxTotal + lackCar*100 div maxTotal + lackFat*100 div maxTotal + excessPro*100 div maxTotal + excessCar*100 div maxTotal + excessFat*100 div maxTotal)*82 + 18*(3*acumprice*100 div budget);
 
 % Objective Function:
 solve :: int_search([lackPro,lackCar,lackFat], anti_first_fail,indomain_max)
