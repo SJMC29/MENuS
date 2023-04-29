@@ -3,13 +3,14 @@ int : n;
 int : maxTotal = 5000;
 array[1..n,1..5] of int: groceries; % Asumimos que el arreglo viene ordenado, conocemos cada producto
 array[1..3,1..3] of int: requirements; % 
+array[1..2] of int: offset;
 int: budget; % 
 int: variety; %
 
 % Variables:
 array[1..n] of var 0..: grocerylist; % grocerylist[i] Representa el número de unidades que se van a sugerir del producto i.
 var 0..: acumprice; %
-var 0..: totalItems; %
+%var 0..: totalItems; %
 
 var 0..: protein; %
 var 0..: carbo; %
@@ -29,8 +30,8 @@ constraint forall(i in 1..n)
             (grocerylist[i] <= variety);
 
 % Total (Display).
-constraint totalItems = sum(i in 1..n)
-            (grocerylist[i]);
+%constraint totalItems = sum(i in 1..n)
+%            (grocerylist[i]);
 
 % Protein.
 constraint protein = sum(i in 1..n)
@@ -60,7 +61,7 @@ constraint forall(i in 1..n)(grocerylist[i] <= groceries[i,4]);
 constraint acumprice = sum(i in 1..n)(grocerylist[i] * groceries[i,5]);
 
 % New
-constraint mnt = (((lackPro+excessPro)*100 div (totalItems*requirements[1,3]) + (lackCar+excessCar)*100 div (totalItems*requirements[2,3]) + (lackFat+excessFat)*100 div (totalItems*requirements[3,3])) div 3)*9 + 1*(acumprice*100 div budget);
+constraint mnt = (((4*lackPro+4*lackCar+9*lackFat)*100) div offset[1])*65+(((4*excessPro+4*excessCar+9*excessFat)*100) div offset[2])*25 + (acumprice*100 div budget)*10;
 % Old
 %constraint mnt = (lackPro*100 div maxTotal + lackCar*100 div maxTotal + lackFat*100 div maxTotal + excessPro*100 div maxTotal + excessCar*100 div maxTotal + excessFat*100 div maxTotal)*82 + 18*(3*acumprice*100 div budget);
 
