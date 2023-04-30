@@ -4,7 +4,7 @@ int : maxTotal = 5000;
 array[1..n,1..5] of int: groceries; % Asumimos que el arreglo viene ordenado, conocemos cada producto
 array[1..3,1..2] of int: requirements; % 
 array[1..2] of int: offset;
-int: budget; % 
+int: budget; %
 int: variety; %
 
 % Variables:
