@@ -1,28 +1,28 @@
+set of int: N = 0..;
 % Parameters:
-int : n;
-int : maxTotal = 5000;
-array[1..n,1..5] of int: groceries; % Asumimos que el arreglo viene ordenado, conocemos cada producto
-array[1..3,1..2] of int: requirements; % 
-array[1..3,1..2] of int: offset;
-int: budget; % 
-int: variety; %
+N : n;
+array[1..n,1..5] of N: groceries; % Asumimos que el arreglo viene ordenado, conocemos cada producto
+array[1..3,1..2] of N: requirements; % 
+array[1..3,1..2] of N: offset;
+N: budget; % 
+N: variety; %
 
 % Variables:
-array[1..n] of var 0..: grocerylist; % grocerylist[i] Representa el número de unidades que se van a sugerir del producto i.
-var 0..: acumprice; %
+array[1..n] of var N: grocerylist; % grocerylist[i] Representa el número de unidades que se van a sugerir del producto i.
+var N: acumprice; %
 %var 0..: totalItems; %
 
-var 0..: protein; %
-var 0..: carbo; %
-var 0..: fat; %
+var N: protein; %
+var N: carbo; %
+var N: fat; %
 
-var 0..: lackPro;
-var 0..: lackCar;
-var 0..: lackFat;
-var 0..: excessPro;
-var 0..: excessCar;
-var 0..: excessFat;
-var 0..: mnt;
+var N: lackPro;
+var N: lackCar;
+var N: lackFat;
+var N: excessPro;
+var N: excessCar;
+var N: excessFat;
+var N: mnt;
 
 % Constraints:
 %Variety. (Review: See if its better if we reward variety.
