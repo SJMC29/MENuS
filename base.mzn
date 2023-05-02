@@ -28,7 +28,6 @@ var N: mnt;
 %Variety. (Review: See if its better if we reward variety.
 constraint forall(i in 1..n)
             (grocerylist[i] <= variety);
-
 % Total (Display).
 %constraint totalItems = sum(i in 1..n)
 %            (grocerylist[i]);
@@ -70,7 +69,6 @@ constraint acumprice = sum(i in 1..n)(grocerylist[i] * groceries[i,5]);
 constraint mnt = ((((lackPro*100) div offset[1,1])+((lackCar*100) div offset[2,1])+((lackFat*100) div offset[3,1])) div 3)*65 +
                  ((((excessPro*100) div offset[1,2])+((excessCar*100) div offset[2,2])+((excessFat*100) div offset[3,2])) div 3)*25 +      
                  (acumprice*100 div budget)*10;
-
 % Old
 %constraint mnt = (((4*lackPro+4*lackCar+9*lackFat)*100) div offset[1])*65+(((4*excessPro+4*excessCar+9*excessFat)*100) div offset[2])*25 + (acumprice*100 div budget)*10;
 % Older
