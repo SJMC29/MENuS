@@ -67,6 +67,6 @@ constraint mnt = ((((lackPro*100) div offset[1,1])+((lackCar*100) div offset[2,1
                  (acumprice*100 div budget)*10;
 
 % Objective Function:
-% solve :: int_search([lackPro,lackCar,lackFat], largest, indomain_max)
+solve :: int_search([lackPro,lackCar,lackFat], largest, indomain_max)
 
-solve minimize mnt;
+minimize mnt;

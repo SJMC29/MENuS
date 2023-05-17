@@ -10,7 +10,6 @@ N: variety; %
 % Variables:
 array[1..n] of var N: grocerylist; % grocerylist[i] Representa el número de unidades que se van a sugerir del producto i.
 var N: acumprice; %
-%var 0..: totalItems; %
 
 var N: protein; %
 var N: carbo; %
@@ -25,12 +24,9 @@ var N: excessFat;
 var N: mnt;
 
 % Constraints:
-%Variety. (Review: See if its better if we reward variety.
+%Variety.
 constraint forall(i in 1..n)
             (grocerylist[i] <= variety);
-% Total (Display).
-%constraint totalItems = sum(i in 1..n)
-%            (grocerylist[i]);
 
 % Protein.
 constraint protein = sum(i in 1..n)
@@ -69,10 +65,6 @@ constraint acumprice = sum(i in 1..n)(grocerylist[i] * groceries[i,5]);
 constraint mnt = ((((lackPro*100) div offset[1,1])+((lackCar*100) div offset[2,1])+((lackFat*100) div offset[3,1])) div 3)*65 +
                  ((((excessPro*100) div offset[1,2])+((excessCar*100) div offset[2,2])+((excessFat*100) div offset[3,2])) div 3)*25 +      
                  (acumprice*100 div budget)*10;
-% Old
-%constraint mnt = (((4*lackPro+4*lackCar+9*lackFat)*100) div offset[1])*65+(((4*excessPro+4*excessCar+9*excessFat)*100) div offset[2])*25 + (acumprice*100 div budget)*10;
-% Older
-%constraint mnt = (lackPro*100 div maxTotal + lackCar*100 div maxTotal + lackFat*100 div maxTotal + excessPro*100 div maxTotal + excessCar*100 div maxTotal + excessFat*100 div maxTotal)*82 + 18*(3*acumprice*100 div budget);
 
 % Objective Function:
 solve :: int_search([lackPro,lackCar,lackFat], smallest,indomain_reverse_split)
