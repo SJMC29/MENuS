@@ -1,10 +1,11 @@
-set of int: N = 0..;
-% Parameters:
+int: budget; %
+set of int: N = 0..budget;
+% Parameters:S
 N : n;
 array[1..n,1..5] of N: groceries; % Asumimos que el arreglo viene ordenado, conocemos cada producto
 array[1..3,1..2] of N: requirements; % 
 array[1..3,1..2] of N: offset;
-N: budget; % 
+ 
 N: variety; %
 
 % Variables:
